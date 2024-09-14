@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" type="x-icon" href="/demo/img/logofinale.png">
+    <link rel="shortcut icon" type="x-icon" href="./demo/img/logofinale.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>RLK Pet Shop</title>
@@ -20,7 +20,7 @@
 
 /*Default*/
 body{
-    background-image: url(/demo/img/pexels-jenny-uhling-2262740-17807527.jpg);
+    background-image: url(./demo/img/pexels-jenny-uhling-2262740-17807527.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -438,29 +438,21 @@ button:hover{
     </footer>
     
    
-    <script src="/demo/main.js"></script>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyBN1bDR3LuYeNu0OfwjKhM2Cpir8MYDVfE",
-          authDomain: "rlkpet-shop.firebaseapp.com",
-          projectId: "rlkpet-shop",
-          storageBucket: "rlkpet-shop.appspot.com",
-          messagingSenderId: "795570188624",
-          appId: "1:795570188624:web:1ae5a3d3852acf45e03c55",
-          measurementId: "G-9S05S82T2K"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
+    <!-- <script src="/demo/main.js"></script> -->
+    <script>
+                // Modal functionality
+    const modal = document.getElementById("announcementModal");
+    const closeBtn = document.querySelector(".close-btn");
+
+    // Show modal when page loads
+    window.onload = function() {
+        modal.style.display = "flex"; // Changed from "block" to "flex" for proper alignment
+    };
+
+    // Close modal when the close button is clicked
+    closeBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+    </script>
 </body>
 </html>
