@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <!-- <link rel="stylesheet" href="/demo/addtocart/payment/styles.css"> --> <!-- Your styles here -->
+     <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+  
+}
+
+body {
+  background-image: url(/demo/addtocart/img/logofinals.jpg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.checkout-container {
+  background-color: white;
+  width: 80%;
+  max-width: 700px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #5F27CD;
+  margin-bottom: 20px;
+  font-size: 2.2rem;
+}
+
+.cart-items {
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: #F0F0F0;
+  border-radius: 8px;
+}
+
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-details {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.item-name {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.item-quantity {
+  margin-top: 5px;
+  color: #555;
+}
+
+.item-price {
+  color: #27AE60;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.total-price {
+  text-align: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.checkout-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout-buttons button {
+  width: 48%;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#confirmPurchase {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 10px;
+  ;
+}
+
+#confirmPurchase:hover {
+  background-color: #000;
+  color: white;
+}
+
+#closeCheckout {
+  background-color: #222f3e;
+  color: white;
+}
+
+#closeCheckout:hover {
+  background-color: #1f2a35;
+}
+
+     </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <h1>Checkout</h1>
+        <div class="cart-items"></div>
+        <div class="total-price"></div>
+        <button id="confirmPurchase">Confirm Purchase</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Retrieve the cart items and total price from localStorage
+            const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+            const totalPrice = localStorage.getItem("totalPrice");
+
+            // Display cart items
+            const cartItemsContainer = document.querySelector(".cart-items");
+            let itemsHTML = '';
+            cartItems.forEach(item => {
+                if (item && item.quantity > 0) {
+                    itemsHTML += `
+                        <div class="cart-item">
+                            <div class="item-details">
+                                <div class="item-name">${item.name}</div>
+                                <div class="item-quantity">Quantity: ${item.quantity}</div>
+                                <div class="item-price">P${item.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            cartItemsContainer.innerHTML = itemsHTML;
+
+            // Display total price
+            const totalPriceContainer = document.querySelector(".total-price");
+            totalPriceContainer.innerHTML = `<h2>Total: P${parseFloat(totalPrice).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</h2>`;
+
+            // Add functionality to confirm purchase
+            document.getElementById("confirmPurchase").addEventListener("click", () => {
+                alert("Thank you for your purchase!");
+                // Clear the cart after purchase
+                localStorage.removeItem("cartItems");
+                localStorage.removeItem("totalPrice");
+                // Optionally redirect to a thank-you page
+                window.location.href = "/demo/addtocart/index.html"; // Replace with your thank you page
+            });
+        });
+    </script>
+</body>
+</html>
